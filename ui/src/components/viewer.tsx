@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import './viewer.css'
 
-const CornerstoneViewport = require('react-cornerstone-viewport');
 
-type imageIds = (any[] | null);
+const CornerstoneViewport: any = require('react-cornerstone-viewport').default;
+
+
 
 export type Props = {
     activeTool: string
@@ -12,7 +13,7 @@ export type Props = {
 
 export function Viewer(props: Props): JSX.Element {
     // Declare a new state variable, which we'll call "count"
-    const tools = [
+    const tools:any = [
         // Mouse
         {
             name: 'Wwwc',
@@ -46,9 +47,10 @@ export function Viewer(props: Props): JSX.Element {
         { name: 'StackScrollMultiTouch', mode: 'active' },
         { name: 'Rotate', mode: 'active' },
     ]
-    const [imageIds, setImageIds] = useState<imageIds>(null);
+    const [imageIds, setImageIds] = useState<any>(null);
+    console.log(imageIds)
     // FORM
-    const [activeTool, setActiveTool] = useState<string>("Wwwc")
+    const [activeTool, setActiveTool] = useState<any>("Wwwc")
 
     useEffect(() => {
         const imageIds = props.imageIds;
@@ -65,13 +67,12 @@ export function Viewer(props: Props): JSX.Element {
             {imageIds == null ?
                 <div><p>画像が選択されていません</p>
                     <p>{activeTool}</p></div> :
-                <canvas>
+                <div className='cornerstone-viewer'>
                     <CornerstoneViewport
-                        tools={tools}
-                        imageIds={imageIds}
-                        activeTool={activeTool}
-                    />
-                </canvas>
+                    tools={tools}
+                    imageIds={imageIds}
+                    activeTool={activeTool}/>
+                </div>
             }
         </div>
     );
