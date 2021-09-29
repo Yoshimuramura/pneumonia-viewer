@@ -7,3 +7,8 @@
 .viewer p{
     color: white;
 }
+
+.cornerstone-viewer{
+    width: 100%;
+    height:100%;
+}
