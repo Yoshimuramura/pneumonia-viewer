@@ -21,7 +21,7 @@ export function Dcmupload(props: uploadProps) {
                 const files = fileInput.files;
                 const filenames: any[] = []
                 for (let i = 0; i < files.length; i++) {
-                    filenames.push("dicomweb:" + files[i].name);
+                    filenames.push("dicomfile:" + files[i].name);
                     console.log(filenames);
                     console.log(files[i].name);　// 1つ1つのファイルデータはfiles[i]で取得できる
                 }

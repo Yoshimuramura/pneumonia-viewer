@@ -1,0 +1,12 @@
+.toolstate-box{
+    height: 80vh;
+    background-color: beige;
+}
+
+.annotation-info{
+    display: grid;
+    background-color: rgb(247, 253, 247);
+    border: solid 3px;
+    border-color: gray;
+    text-align: center;
+}
