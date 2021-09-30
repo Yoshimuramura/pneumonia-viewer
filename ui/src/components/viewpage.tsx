@@ -2,6 +2,8 @@ import { Viewer } from "./viewer";
 import { useState } from 'react';
 import { Selection } from '../parts/select';
 import { Dcmupload } from '../parts/dcmUpload';
+import { ToolState } from "./toolState";
+import './viewpage.css';
 
 const sampledcm: any = require('../images/80_65.dcm').default;
 
@@ -11,6 +13,7 @@ export const Viewpage = (): JSX.Element => {
     const [imageIds, setImageIds] = useState<string[]|null>(null);
     const [activeTool, setActiveTool] = useState<string>('Wwwc');
     // FORM
+
 
     const SetImageIds = (images: string[]): void => {
         setImageIds(images)
@@ -31,15 +34,23 @@ export const Viewpage = (): JSX.Element => {
         imageIds: imageIds,
     }
 
+    const toolstateprops = {
+        imageIds: imageIds
+    }
+
     const uploadProps = {
         SetImageIds: SetImageIds,
     }
+
 
     return (
         <div>
             <h1>ViwePage</h1>
             {Dcmupload(uploadProps)}
+            <div className='viewpage-main'>
             {Viewer(props)}
+            {ToolState(toolstateprops)}
+            </div>
             {Selection('Active tool', activeTool, evt => setActiveTool(evt.target.value), options)}
             <button
                 className="body_btn"

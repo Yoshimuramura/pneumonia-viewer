@@ -47,10 +47,10 @@ export function Viewer(props: Props): JSX.Element {
         { name: 'StackScrollMultiTouch', mode: 'active' },
         { name: 'Rotate', mode: 'active' },
     ]
-    const [imageIds, setImageIds] = useState<any>(null);
+    const [imageIds, setImageIds] = useState<string[]|null>(null);
     console.log(imageIds)
     // FORM
-    const [activeTool, setActiveTool] = useState<any>("Wwwc")
+    const [activeTool, setActiveTool] = useState<string>("Wwwc")
 
     useEffect(() => {
         const imageIds = props.imageIds;
@@ -63,11 +63,12 @@ export function Viewer(props: Props): JSX.Element {
     }, [props.activeTool])
 
     return (
-        <div className='viewer'>
+        <div className='viewer' id='viewer-element'>
             {imageIds == null ?
-                <div><p>画像が選択されていません</p>
-                    <p>{activeTool}</p></div> :
-                <div className='cornerstone-viewer'>
+                <div>
+                    <p>画像が選択されていません</p>
+                </div> :
+                <div className='cornerstone-viewer' >
                     <CornerstoneViewport
                     tools={tools}
                     imageIds={imageIds}
