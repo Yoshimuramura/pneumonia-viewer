@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+const cornerstoneWADOImageLoader = require('cornerstone-wado-image-loader');
 
 type uploadProps = {
     SetImageIds: (images: string[]) => void
@@ -19,9 +20,10 @@ export function Dcmupload(props: uploadProps) {
             // changeイベントで呼び出す関数
             const handleFileSelect = () => {
                 const files = fileInput.files;
-                const filenames: any[] = []
+                const filenames: string[] = []
                 for (let i = 0; i < files.length; i++) {
-                    filenames.push("dicomfile:" + files[i].name);
+                    const imageId = cornerstoneWADOImageLoader.wadouri.fileManager.add(files[i]);
+                    filenames.push(imageId);
                     console.log(filenames);
                     console.log(files[i].name);　// 1つ1つのファイルデータはfiles[i]で取得できる
                 }
@@ -31,5 +33,5 @@ export function Dcmupload(props: uploadProps) {
             fileInput.addEventListener('change', handleFileSelect);
         }
     })
-    return (<input type="file" id="upload" accept="image/dcm" multiple></input>)
+    return (<input type="file" id="upload" accept="*.dcm" multiple></input>)
 }
