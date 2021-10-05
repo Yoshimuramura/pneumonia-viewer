@@ -1,17 +1,19 @@
 import { useState,useEffect } from "react";
 import './toolState.css';
+import { PostImage } from "../parts/restapi";
 const cornerstoneTools:any = require('cornerstone-tools');
 
 type toolStateProps ={
     imageIds: string[]|null,
+    imageFiles:any,
 }
 
 export function ToolState(props:toolStateProps): JSX.Element{
     const [toolState,setToolState] = useState<any>({})
     const [imageIds, setImageIds] = useState<string|null>(null);
+    const [imageFile, setImageFile] = useState<any>(null);
     const [showstatus,setShowstatus] = useState<boolean>(false);
 
-    console.log(imageIds)
     console.log(toolState)
 
     useEffect(() => {
@@ -20,6 +22,13 @@ export function ToolState(props:toolStateProps): JSX.Element{
         setImageIds(imageIdsInfo[0]);
         }
     }, [props.imageIds])
+
+    useEffect(() => {
+        const imageFilesInfo = props.imageFiles;
+        if (imageFilesInfo != null){
+        setImageFile(imageFilesInfo[0]);
+        }
+    }, [props.imageFiles])
 
 
     useEffect(()=>{
@@ -39,6 +48,8 @@ export function ToolState(props:toolStateProps): JSX.Element{
     return(
     <div className='toolstate-box'>
         <h1>アノテーション情報</h1>
+        {imageFile !== null?
+        <div>{PostImage(imageFile)}</div>:<div></div>}
         {showstatus === false?
         <div>
         No Rows to Show

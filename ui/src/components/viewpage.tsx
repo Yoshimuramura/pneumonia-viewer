@@ -10,12 +10,17 @@ const sampledcm: any = require('../images/80_65.dcm').default;
 
 export const Viewpage = (): JSX.Element => {
     const [imageIds, setImageIds] = useState<string[]|null>(null);
+    const [imageFiles,setImageFiles] = useState<any>(null);
     const [activeTool, setActiveTool] = useState<string>('Wwwc');
     // FORM
 
 
     const SetImageIds = (images: string[]): void => {
         setImageIds(images)
+    }
+
+    const SetImageFiles = (imagefiles: any): void => {
+        setImageFiles(imagefiles)
     }
 
     const options: { value: string, name: string }[] = [
@@ -34,11 +39,13 @@ export const Viewpage = (): JSX.Element => {
     }
 
     const toolstateprops = {
-        imageIds: imageIds
+        imageIds: imageIds,
+        imageFiles: imageFiles,
     }
 
     const uploadProps = {
         SetImageIds: SetImageIds,
+        SetImageFiles: SetImageFiles,
     }
 
 

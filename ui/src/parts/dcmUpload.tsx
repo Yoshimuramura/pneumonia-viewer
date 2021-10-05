@@ -3,6 +3,7 @@ const cornerstoneWADOImageLoader = require('cornerstone-wado-image-loader');
 
 type uploadProps = {
     SetImageIds: (images: string[]) => void
+    SetImageFiles: (files: any[]) => void
 }
 
 export function Dcmupload(props: uploadProps) {
@@ -20,6 +21,7 @@ export function Dcmupload(props: uploadProps) {
             // changeイベントで呼び出す関数
             const handleFileSelect = () => {
                 const files = fileInput.files;
+                props.SetImageFiles(files);
                 const filenames: string[] = []
                 for (let i = 0; i < files.length; i++) {
                     const imageId = cornerstoneWADOImageLoader.wadouri.fileManager.add(files[i]);

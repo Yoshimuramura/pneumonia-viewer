@@ -10,6 +10,7 @@
     "@types/node": "^12.20.27",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
+    "axios": "^0.22.0",
     "cornerstone-core": "^2.5.0",
     "cornerstone-math": "^0.1.9",
     "cornerstone-tools": "^6.0.0",
