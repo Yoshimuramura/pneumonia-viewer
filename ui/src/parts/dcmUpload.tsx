@@ -12,12 +12,11 @@ export function Dcmupload(props: uploadProps) {
     // input要素
 
     useEffect(() => {
-        const fileInput: any = document.getElementById('upload');
-        setFileInput(fileInput)
+        const fileInputs: any = document.getElementById('upload');
+        setFileInput(fileInputs)
     }, [])
     useEffect(() => {
         if (fileInput != null) {
-
             // changeイベントで呼び出す関数
             const handleFileSelect = () => {
                 const files = fileInput.files;
