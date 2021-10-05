@@ -8,7 +8,6 @@ import './viewpage.css';
 const sampledcm: any = require('../images/80_65.dcm').default;
 
 
-
 export const Viewpage = (): JSX.Element => {
     const [imageIds, setImageIds] = useState<string[]|null>(null);
     const [activeTool, setActiveTool] = useState<string>('Wwwc');
