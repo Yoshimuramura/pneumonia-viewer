@@ -14,7 +14,7 @@ export function PostImage(props:postImageProps){
 
   const handleClick = () => {
     fetch('/api/', {
-      method: 'PUT',
+      method: 'POST',
       body: formData
     })
   .then(response => console.log(response))
@@ -32,5 +32,3 @@ export function PostImage(props:postImageProps){
     </div>
   );
 }
-
-
