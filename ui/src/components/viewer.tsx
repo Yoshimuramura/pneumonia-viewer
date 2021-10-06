@@ -48,7 +48,6 @@ export function Viewer(props: Props): JSX.Element {
         { name: 'Rotate', mode: 'active' },
     ]
     const [imageIds, setImageIds] = useState<string[]|null>(null);
-    console.log(imageIds)
     // FORM
     const [activeTool, setActiveTool] = useState<string>("Wwwc")
 
@@ -78,4 +77,3 @@ export function Viewer(props: Props): JSX.Element {
         </div>
     );
 }
-

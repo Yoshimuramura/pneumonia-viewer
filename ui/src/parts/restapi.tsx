@@ -1,18 +1,14 @@
-import { useState, useEffect } from "react";
 
 type postImageProps = {
-  file:File
+  file: File;
 }
 
 export function PostImage(props:postImageProps){
 
-
-  const formData = new FormData();
-  const fileField = props.file
-
-  formData.append('avatar', fileField);
-
   const handleClick = () => {
+    const formData = new FormData();
+    formData.append('file', props.file);
+    console.log(props.file)
     fetch('/api/', {
       method: 'POST',
       body: formData
@@ -24,7 +20,7 @@ export function PostImage(props:postImageProps){
   .catch(error => {
     console.error('Error:', error);
   });
-}
+  }
 
   return (
     <div>

@@ -11,10 +11,8 @@ type toolStateProps ={
 export function ToolState(props:toolStateProps): JSX.Element{
     const [toolState,setToolState] = useState<any>({})
     const [imageIds, setImageIds] = useState<string|null>(null);
-    const [imageFile, setImageFile] = useState<any>(null);
+    const [imageFile, setImageFile] = useState<File|null>(null);
     const [showstatus,setShowstatus] = useState<boolean>(false);
-
-    console.log(toolState)
 
     useEffect(() => {
         const imageIdsInfo = props.imageIds;
@@ -26,7 +24,8 @@ export function ToolState(props:toolStateProps): JSX.Element{
     useEffect(() => {
         const imageFilesInfo = props.imageFiles;
         if (imageFilesInfo != null){
-        setImageFile(imageFilesInfo[0]);
+            setImageFile(imageFilesInfo[0]);
+            console.log(imageFilesInfo[0])
         }
     }, [props.imageFiles])
 
@@ -49,7 +48,7 @@ export function ToolState(props:toolStateProps): JSX.Element{
     <div className='toolstate-box'>
         <h1>アノテーション情報</h1>
         {imageFile !== null?
-        <div>{PostImage(imageFile)}</div>:<div></div>}
+                <div><PostImage file={imageFile} /></div>:<div></div>}
         {showstatus === false?
         <div>
         No Rows to Show
