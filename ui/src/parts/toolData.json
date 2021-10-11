@@ -1,0 +1,28 @@
+{"RectangleRoi":
+    {"data":
+        [
+            {
+                "active":true,
+                "handles":
+                {
+                    "end":
+                    {
+                        "active": false,
+                        "highlight": true,
+                        "moving": false,
+                        "x": 407.16913946587533,
+                        "y": 805.6023738872402
+                    },
+                    "initialRotation": 0,
+                    "start":
+                    {
+                        "active": false,
+                        "highlight": true,
+                        "x": 215.7388724035608,
+                        "y": 398.43323442136494
+                    }
+                }
+            }
+        ]
+    }
+}

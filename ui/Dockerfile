@@ -16,9 +16,9 @@ COPY . /app
 # add the node_modules folder to $PATH
 # ENV PATH /app/node_modules/.bin:$PATH
 # install and cache dependencies
-RUN npm install
+RUN yarn install --network-timeout 600000
 #build the project for production
-RUN npm run build
+RUN yarn build
 # set up production environment
 # the base image for this is an alpine based nginx image
 FROM nginx:alpine
