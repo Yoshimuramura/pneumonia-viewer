@@ -34,5 +34,9 @@ export function Dcmupload(props: uploadProps) {
             fileInput.addEventListener('change', handleFileSelect);
         }
     })
-    return (<input type="file" id="upload" accept="*.dcm" multiple></input>)
+    return (<input 
+        type="file" 
+        id="upload" 
+        accept="*.dcm" 
+        multiple ></input>)
 }

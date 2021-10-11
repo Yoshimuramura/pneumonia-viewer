@@ -7,8 +7,11 @@ from PIL import Image
 from typing import List
 import subprocess
 import os
+import uuid
 
 app = FastAPI()
+
+os.chdir('/app/yolov5/')
 
 
 @app.post("/api/")
@@ -18,8 +21,9 @@ async def get_filelist(file: UploadFile = File(...)):
     '''
     filename = file.filename
 
-    os.chdir('./yolov5')
-    uploadedpath = f"./uploads/{filename}"
+    uploads = str(uuid.uuid4())
+    os.mkdir(f"/app/yolov5/{uploads}")
+    uploadedpath = f"./{uploads}/{filename}"
     with open(uploadedpath, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
@@ -27,14 +31,15 @@ async def get_filelist(file: UploadFile = File(...)):
     img = data.pixel_array
     img_x = img.shape[1]
     img_y = img.shape[0]
-    image_path = "./images"
+    image_path = str(uuid.uuid4())
+    os.mkdir(f"/app/yolov5/{image_path}")
     jpeg_img = img.astype('u1')
     save_img = Image.fromarray(jpeg_img).convert('L')
     save_path = image_path + '/' + 'sample.jpg'
     save_img.save(save_path, quality=100)
 
     weights = [
-        f"./runs/train/exp{i}3/weights/best.pt" for i in range(5)]
+        f"./runs/train/exp43/weights/best.pt" ]
     we = " " . join(weights)
 
     # コマンドを定義して、変数を挿入するdo
@@ -56,8 +61,9 @@ async def get_filelist(file: UploadFile = File(...)):
         'conf':float(anno[5])
     } for anno in annolist]
 
-    os.remove(uploadedpath)
-    os.remove(save_path)
+    shutil.rmtree(f"/app/yolov5/{uploads}")
+    shutil.rmtree(f"/app/yolov5/{image_path}")
+
     try:
         shutil.rmtree("./runs/detect/exp")
     except:

@@ -21,6 +21,7 @@ export const Viewpage = (): JSX.Element => {
 
     const SetImageFiles = (imagefiles: any): void => {
         setImageFiles(imagefiles)
+        setActiveTool('Wwwc')
     }
 
     const options: { value: string, name: string }[] = [

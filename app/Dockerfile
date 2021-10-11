@@ -7,7 +7,8 @@ RUN apt-get install -y libgl1-mesa-dev
 
 
 COPY ./app /app
-RUN mkdir /app/yolov5/uploads
-RUN mkdir /app/yolov5/images
+
+ENV MAX_WORKERS=2
+ENV TIMEOUT=300
 
 ENV PORT=8080
