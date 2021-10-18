@@ -20,7 +20,7 @@ export const Viewpage = (): JSX.Element => {
   };
 
   const SetImageFiles = (imagefiles: any): void => {
-    initCornerstone();
+    //initCornerstone();
     setImageFiles(imagefiles);
     setActiveTool("Wwwc");
   };

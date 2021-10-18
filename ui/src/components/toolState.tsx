@@ -103,7 +103,8 @@ export function ToolState(props: toolStateProps): JSX.Element {
       ) : (
         <div></div>
       )}
-      {showstatus === false ? (
+      {toolState[imageId!] === undefined ||
+      toolState[imageId!]["RectangleRoi"]["data"].length == 0 ? (
         <div>No Rows to Show</div>
       ) : (
         <div>
