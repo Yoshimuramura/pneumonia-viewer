@@ -43,16 +43,20 @@ async def get_filelist(file: UploadFile = File(...)):
     we = " " . join(weights)
 
     # コマンドを定義して、変数を挿入するdo
-    cmd = f"python ./detect.py --weights {we} --img 512 --conf 0.2 --iou 0.4 --source {save_path} --save-txt --save-conf"
+    cmd = f"python ./detect.py --weights {we} --img 512 --conf 0.2 --iou 0.4 --source {save_path} --save-txt --save-conf --exist-ok"
 
     result = subprocess.run(cmd, shell=True)
     print(result)
 
     textfile = './runs/detect/exp/labels/sample.txt'
-    with open(textfile) as f:
-        l_strip = [s.strip() for s in f.readlines()]
+    if os.path.exists(textfile) == True:
 
-    annolist = [l.split() for l in l_strip]
+        with open(textfile) as f:
+            l_strip = [s.strip() for s in f.readlines()]
+
+        annolist = [l.split() for l in l_strip]
+    else:
+        annolist = []
 
 
     anno_json = []

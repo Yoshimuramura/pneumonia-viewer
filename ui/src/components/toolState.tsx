@@ -19,30 +19,32 @@ export function ToolState(props: toolStateProps): JSX.Element {
   const [aiInfo, setAiInfo] = useState<any[] | null>(null);
 
   const GetAiInfo = (data: any[]): void => {
-    setAiInfo(data);
-    console.log(data);
-    data.forEach((dataarray) => {
-      const defaultdata = JSON.parse(
-        JSON.stringify(toolData.RectangleRoi.data[0])
-      );
-      if (dataarray.x !== undefined) {
-        defaultdata.handles.start.x = dataarray.x;
-        defaultdata.handles.start.y = dataarray.y;
-        defaultdata.handles.end.x = dataarray.x + dataarray.w;
-        defaultdata.handles.end.y = dataarray.y + dataarray.h;
-        defaultdata.handles.textBox.x = dataarray.x + dataarray.w;
-        defaultdata.handles.textBox.y = dataarray.y + dataarray.h / 2;
-        defaultdata.cachedStats = dataarray.cachedStats;
-        defaultdata.uuid = uuidv4();
-        console.log(defaultdata);
-        cornerstoneTools.globalImageIdSpecificToolStateManager.addImageIdToolState(
-          imageId,
-          "RectangleRoi",
-          defaultdata
+    if (data.length > 0) {
+      setAiInfo(data);
+      console.log(data);
+      data.forEach((dataarray) => {
+        const defaultdata = JSON.parse(
+          JSON.stringify(toolData.RectangleRoi.data[0])
         );
-      } else {
-      }
-    });
+        if (dataarray.x !== undefined) {
+          defaultdata.handles.start.x = dataarray.x;
+          defaultdata.handles.start.y = dataarray.y;
+          defaultdata.handles.end.x = dataarray.x + dataarray.w;
+          defaultdata.handles.end.y = dataarray.y + dataarray.h;
+          defaultdata.handles.textBox.x = dataarray.x + dataarray.w;
+          defaultdata.handles.textBox.y = dataarray.y + dataarray.h / 2;
+          defaultdata.cachedStats = dataarray.cachedStats;
+          defaultdata.uuid = uuidv4();
+          console.log(defaultdata);
+          cornerstoneTools.globalImageIdSpecificToolStateManager.addImageIdToolState(
+            imageId,
+            "RectangleRoi",
+            defaultdata
+          );
+        } else {
+        }
+      });
+    }
   };
 
   useEffect(() => {
@@ -104,7 +106,7 @@ export function ToolState(props: toolStateProps): JSX.Element {
         <div></div>
       )}
       {toolState[imageId!] === undefined ||
-      toolState[imageId!]["RectangleRoi"]["data"].length == 0 ? (
+      toolState[imageId!]["RectangleRoi"]["data"].length === 0 ? (
         <div>No Rows to Show</div>
       ) : (
         <div>
