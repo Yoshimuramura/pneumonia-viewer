@@ -1,28 +1,56 @@
-{"RectangleRoi":
-    {"data":
-        [
-            {
-                "active":true,
-                "handles":
-                {
-                    "end":
-                    {
-                        "active": false,
-                        "highlight": true,
-                        "moving": false,
-                        "x": 407.16913946587533,
-                        "y": 805.6023738872402
-                    },
-                    "initialRotation": 0,
-                    "start":
-                    {
-                        "active": false,
-                        "highlight": true,
-                        "x": 215.7388724035608,
-                        "y": 398.43323442136494
-                    }
-                }
-            }
-        ]
-    }
+{
+  "RectangleRoi": {
+    "data": [
+      {
+        "active": false,
+        "cachedStats": {
+          "area": 2803.7571150254016,
+          "count": 96254,
+          "max": 197,
+          "mean": 155.5291208677042,
+          "meanStdDevSUV": 0,
+          "min": 72,
+          "stdDev": 18.437668975031006,
+          "variance": 339.94763723282085
+        },
+        "color": "rgb(255, 0, 0)",
+        "handles": {
+          "end": {
+            "active": false,
+            "highlight": true,
+            "moving": false,
+            "x": 407.16913946587533,
+            "y": 805.6023738872402
+          },
+          "initialRotation": 0,
+          "start": {
+            "active": false,
+            "highlight": true,
+            "x": 215.7388724035608,
+            "y": 398.43323442136494
+          },
+          "textBox": {
+            "active": false,
+            "allowedOutsideImage": true,
+            "boundingBox": {
+              "width": 151.3984375,
+              "height": 65,
+              "left": 154,
+              "top": 307
+            },
+            "drawnIndependently": true,
+            "hasBoundingBox": true,
+            "hasMoved": false,
+            "movesIndependently": false,
+            "x": 407.16913946587533,
+            "y": 602.0178041543026
+          }
+        },
+        "invalidated": false,
+        "unit": "",
+        "uuid": "5156332b-f319-4742-9340-8774af3241ce",
+        "visible": true
+      }
+    ]
+  }
 }
