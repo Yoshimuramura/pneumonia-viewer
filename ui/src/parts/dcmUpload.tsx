@@ -4,8 +4,6 @@ const cornerstoneWADOImageLoader = require("cornerstone-wado-image-loader");
 type uploadProps = {
   SetImageIds: (images: string[]) => void;
   SetImageFiles: (files: any[]) => void;
-  SetToolcash: (status: boolean) => void;
-  toolcash: boolean;
 };
 
 export function Dcmupload(props: uploadProps) {

@@ -1,12 +1,33 @@
-.toolstate-box{
-    height: 80vh;
-    background-color: beige;
+.toolstate-box {
+  height: 80vh;
+  background-color: beige;
 }
 
-.annotation-info{
-    display: grid;
-    background-color: rgb(247, 253, 247);
-    border: solid 3px;
-    border-color: gray;
-    text-align: center;
+.annotation-box {
+  height: 80%;
+  overflow-y: scroll;
+  background-color: white;
+  border: solid 3px;
+  border-color: rgb(167, 162, 162);
+}
+
+.annotations {
+  border: solid 1px;
+  border-color: black;
+}
+
+.annotation-info {
+  display: grid;
+  background-color: rgb(247, 253, 247);
+  border: solid 10px;
+  border-color: rgb(181, 255, 0);
+  text-align: center;
+}
+
+.ai-info {
+  display: grid;
+  background-color: rgb(247, 253, 247);
+  border: solid 10px;
+  border-color: rgb(255, 0, 0);
+  text-align: center;
 }

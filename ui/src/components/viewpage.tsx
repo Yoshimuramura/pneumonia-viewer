@@ -3,20 +3,26 @@ import { useState } from "react";
 import { Selection } from "../parts/select";
 import { Dcmupload } from "../parts/dcmUpload";
 import { ToolState } from "./toolState";
-import initCornerstone from "../initCornerstone";
 import "./viewpage.css";
-
-const sampledcm: any = require("../images/80_65.dcm").default;
+const cornerstoneTools: any = require("cornerstone-tools");
 
 export const Viewpage = (): JSX.Element => {
   const [imageIds, setImageIds] = useState<string[] | null>(null);
   const [imageFiles, setImageFiles] = useState<any>(null);
   const [activeTool, setActiveTool] = useState<string>("Wwwc");
-  const [toolcash, setToolcash] = useState<boolean>(false);
+  const [toolstate, setToolstate] = useState<any>({});
+  const [update, setUpdata] = useState<boolean>(false);
   // FORM
-
+  console.log(toolstate);
   const SetImageIds = (images: string[]): void => {
     setImageIds(images);
+  };
+
+  const getToolState = () => {
+    const toolstateinfo =
+      cornerstoneTools.globalImageIdSpecificToolStateManager.saveToolState();
+    setToolstate(toolstateinfo);
+    setUpdata(update ? false : true);
   };
 
   const SetImageFiles = (imagefiles: any): void => {
@@ -25,21 +31,15 @@ export const Viewpage = (): JSX.Element => {
     setActiveTool("Wwwc");
   };
 
-  const SetToolcash = (status: boolean): void => {
-    setToolcash(status);
-  };
-
   const options: { value: string; name: string }[] = [
     { value: "Wwwc", name: "Wwwc" },
     { value: "Zoom", name: "Zoom" },
     { value: "Pan", name: "Pan" },
-    { value: "Length", name: "Length" },
-    { value: "Angle", name: "Angle" },
     { value: "RectangleRoi", name: "RectangleRoi" },
     { value: "Eraser", name: "Eraser" },
   ];
 
-  const props = {
+  const viewerprops = {
     activeTool: activeTool,
     imageIds: imageIds,
   };
@@ -47,14 +47,12 @@ export const Viewpage = (): JSX.Element => {
   const toolstateprops = {
     imageIds: imageIds,
     imageFiles: imageFiles,
-    SetToolcash: SetToolcash,
+    toolstate: toolstate,
   };
 
   const uploadProps = {
     SetImageIds: SetImageIds,
     SetImageFiles: SetImageFiles,
-    SetToolcash: SetToolcash,
-    toolcash: toolcash,
   };
 
   return (
@@ -62,7 +60,7 @@ export const Viewpage = (): JSX.Element => {
       <h1>ViwePage</h1>
       {Dcmupload(uploadProps)}
       <div className="viewpage-main">
-        {Viewer(props)}
+        <div onClick={getToolState}>{Viewer(viewerprops)}</div>
         {ToolState(toolstateprops)}
       </div>
       {Selection(
@@ -71,15 +69,6 @@ export const Viewpage = (): JSX.Element => {
         (evt) => setActiveTool(evt.target.value),
         options
       )}
-      <button
-        className="body_btn"
-        type="button"
-        onClick={() => {
-          setImageIds(["dicomweb:" + sampledcm]);
-        }}
-      >
-        web上のものを選択
-      </button>
     </div>
   );
 };

@@ -11,9 +11,11 @@ export function PostImage(props: postImageProps) {
   const [successmodalshow, setSuccessmodalShow] = useState(false);
   const [errormodalshow, setErrormodalShow] = useState(false);
   const [error, setError] = useState<string>("");
+  const [update, setUpdata] = useState<boolean>(false);
 
   const SetSuccessmodalShow = (showjudge: boolean): void => {
     setSuccessmodalShow(showjudge);
+    setUpdata(update ? false : true);
   };
 
   const SetErrormodalShow = (showjudge: boolean): void => {

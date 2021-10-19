@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "./viewer.css";
-
 const CornerstoneViewport: any = require("react-cornerstone-viewport").default;
 
 export type Props = {
@@ -36,13 +35,6 @@ export function Viewer(props: Props): JSX.Element {
     { name: "ArrowAnnotate", mode: "active" },
     { name: "CircleRoi", mode: "active" },
     { name: "RectangleRoi", mode: "active" },
-    // Scroll
-    { name: "StackScrollMouseWheel", mode: "active" },
-    // Touch
-    { name: "PanMultiTouch", mode: "active" },
-    { name: "ZoomTouchPinch", mode: "active" },
-    { name: "StackScrollMultiTouch", mode: "active" },
-    { name: "Rotate", mode: "active" },
   ];
   const [imageIds, setImageIds] = useState<string[] | null>(null);
   // FORM

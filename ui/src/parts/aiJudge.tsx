@@ -34,10 +34,9 @@ export function SuccessModal(props: successModalPorps) {
           <h2>読影作業が終了しました。</h2>
           <p>
             ※結果を表示するには、ビューアーを
-            <h3>
-              <span style={{ color: "red" }}>クリック</span>
-            </h3>
-            します。
+            <span style={{ color: "red" }}>クリック</span>
+            します。 クリックしてもボックスが表示されない場合は、
+            肺炎が検知されていないことを表します。
           </p>
           <button onClick={() => props.SetSuccessmodalShow(false)}>
             Close

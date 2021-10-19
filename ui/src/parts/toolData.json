@@ -47,6 +47,7 @@
           }
         },
         "invalidated": false,
+        "config": 0,
         "unit": "",
         "uuid": "5156332b-f319-4742-9340-8774af3241ce",
         "visible": true
