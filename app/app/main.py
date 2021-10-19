@@ -43,23 +43,48 @@ async def get_filelist(file: UploadFile = File(...)):
     we = " " . join(weights)
 
     # コマンドを定義して、変数を挿入するdo
-    cmd = f"python ./detect.py --weights {we} --img 512 --conf 0.2 --iou 0.4 --source {save_path} --save-txt --save-conf"
+    cmd = f"python ./detect.py --weights {we} --img 512 --conf 0.2 --iou 0.4 --source {save_path} --save-txt --save-conf --exist-ok"
 
     result = subprocess.run(cmd, shell=True)
     print(result)
 
     textfile = './runs/detect/exp/labels/sample.txt'
-    with open(textfile) as f:
-        l_strip = [s.strip() for s in f.readlines()]
+    if os.path.exists(textfile) == True:
 
-    annolist = [l.split() for l in l_strip]
-    anno_json = [{
-        'x': float(anno[1])*img_x-(float(anno[3])*img_x)/2,
-        'y':float(anno[2])*img_y-(float(anno[4])*img_x)/2,
-        'w':float(anno[3])*img_x,
-        'h':float(anno[4])*img_y,
-        'conf':float(anno[5])
-    } for anno in annolist]
+        with open(textfile) as f:
+            l_strip = [s.strip() for s in f.readlines()]
+
+        annolist = [l.split() for l in l_strip]
+    else:
+        annolist = []
+
+
+    anno_json = []
+    for anno in annolist:
+        x = float(anno[1])*img_x-(float(anno[3])*img_x)/2
+        y = float(anno[2])*img_y-(float(anno[4])*img_x)/2
+        w = float(anno[3])*img_x
+        h = float(anno[4])*img_y
+        detectimg = img[int(y):int(y+h),int(x):int(x+w)]
+        detail = {
+            "x": x,
+            "y": y,
+            "w": w,
+            "h": h,
+            "conf":float(anno[5]),
+            "cachedStats" : {
+                "area": int(w)*int(h)*data.PixelSpacing[0]*data.PixelSpacing[1],
+                "count": int(w)*int(h),
+                "max": int(detectimg.max()),
+                "mean": float(np.mean(detectimg)),
+                "meanStdDevSUV": 0,
+                "min": int(detectimg.min()),
+                "stdDev": float(np.std(detectimg)),
+                "variance": float(np.var(detectimg))
+            }
+        }
+        anno_json.append(detail)
+
 
     shutil.rmtree(f"/app/yolov5/{uploads}")
     shutil.rmtree(f"/app/yolov5/{image_path}")
